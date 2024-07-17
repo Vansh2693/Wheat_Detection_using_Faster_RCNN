@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wheat Grain Detector</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title mb-0">Wheat Grain Detector</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="uploadForm" method="POST" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="file">Upload an image</label>
+                                <input type="file" class="form-control-file" id="file" name="file" accept="image/*">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Detect Wheat Grains</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="resultSection" class="mt-3" style="display: {% if filename %}block{% else %}none{% endif %};">
+            <h3 class="card-title">Result</h3>
+            <div id="resultImageContainer" class="mt-3">
+                {% if filename %}
+                <img src="{{ url_for('uploaded_file', filename=filename) }}" class="img-thumbnail" alt="Result Image">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+  
+</body>
+</html>
